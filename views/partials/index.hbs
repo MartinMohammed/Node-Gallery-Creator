@@ -1,0 +1,74 @@
+<body>
+{{!-- ----------- SECTION ---------- --}}
+{{!-- BOOTSTRAP CLASSES  --}}
+<section class="section my-4">
+    <div class="container text-center">
+        {{!-- ---------- CSS TEXT TYPING ANIMATION - NOT RESPONSIVE--------- --}}
+        <div class="wrapper">
+            <div class="static-txt">'Photo Album' your best: </div>
+                <div class="dynamic-txts">
+                    <li><span>Emotions</span></li>
+                    <li><span>Memories</span></li>
+                    <li><span>Passions</span></li>
+                    <li><span>Moments</span></li>
+                </div>
+        </div>
+
+        {{!-- ---------- /CSS TEXT TYPING ANIMATION --------- --}}
+            <p class="subtitle" style="color:white; font-size: 30px">
+                Upload Images to the <strong>Servers</strong>
+            </p>
+
+        <div class="row justify-content-center">
+            {{!-- size 4 (space) in Bootstrap we have 12 grid column system --}}
+            <div class="col-4">
+                <form action="/uploadmultiple" enctype="multipart/form-data" method="POST">
+                <div class="row">
+                    <div class="col-8" style="padding: 5px;">
+                        <input type="file" class="form-control" name="images" id="formFile" multiple>
+                    </div>
+                    <div class="col-2" style="padding: 5px;">
+                        <input type="submit" class="btn btn-warning" value="Upload Images">
+                    </div>
+                </div>
+                </form>
+            </div>
+        </div>
+
+        {{!-- display images --}}
+        <section class="mt-5 container__images">
+            <div class="row" style="margin-right: 0; margin-left: 0;">
+                {{!-- access list of images from database --}}
+                {{!-- iterate through the array --}}
+                {{#each images}}
+                    {{!-- iterate through the current object --}}
+                    {{#each this}}
+                        {{#if imageBase64}}
+                            {{!-- execute if statement --}}
+
+                            {{!-- bootstrap cards --}}
+                            <div class="col-lg-3 col-md-6 col-sm-12" style="padding: 5px;">
+                                <div class="card image__card" style="width: 18rem;">
+                                    {{!-- when to access your base64 and display image -> first pass data from base64 and then pass the value base64 --}}
+                                    <img src="data:{{contentType}};base64,{{imageBase64}}" class="card-img-top img-fluid" alt="...">
+                                     <div class="card-body">
+                                        <h5 class="card-title font-poppins">UI/UX Design</h5>
+                                        <p class="text-seconda
+                                        ry font-size-09">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                        <a href="#" class="button__card font-size-09">Read More...</a>
+                                    </div>
+                                </div>
+                            </div>
+                            {{!-- /bootstrap cards --}}
+                        {{/if}}
+                    {{/each}}
+                {{/each}}
+            </div>
+        </section>
+        {{!-- /display images --}}
+
+    </div>
+</section>
+{{!-- ----------- /SECTION ---------- --}}
+</body>
+
